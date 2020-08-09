@@ -1,9 +1,8 @@
-import {Router} from 'express'; 
+import { Router } from "express";
+import AuthController from "./controllers/AuthController";
 
-const route = Router(); 
+const route = Router();
 
-route.get("/", (req, res) => {
-  res.send("Server is up");
-})
+route.post("/user/create", AuthController.create);
 
 export default route;
