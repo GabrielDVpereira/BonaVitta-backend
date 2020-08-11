@@ -1,13 +1,17 @@
+import "dotenv/config";
 import express from "express";
 import routes from "./routes";
 import "./config/database";
 class App {
   constructor() {
     this.app = express();
+    this.middlewares();
     this.routes();
   }
 
-  middlewares() {}
+  middlewares() {
+    this.app.use(express.json());
+  }
   routes() {
     this.app.use(routes);
   }

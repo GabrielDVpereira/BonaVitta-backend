@@ -37,6 +37,8 @@ UserSchema.methods.generateAuthToken = function () {
     },
     process.env.PRIVATE_KEY
   );
+
+  return token;
 };
 
 export default mongoose.model<IUser>("User", UserSchema);
