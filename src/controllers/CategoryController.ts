@@ -18,6 +18,34 @@ class CategoryController {
       return res.status({ message: err.message || err });
     }
   }
+  async update(req: Request, res: Response): Promise<Response> {
+    try {
+      const { productId } = req.params;
+
+      const category: ICategory = await Category.findOneAndUpdate(
+        {
+          _id: productId,
+        },
+        { ...req.body },
+        { new: true }
+      );
+      return res.json(category);
+    } catch (err) {
+      return res.status({ message: err.message || err });
+    }
+  }
+  async delete(req: Request, res: Response): Promise<Response> {
+    try {
+      const { productId } = req.params;
+
+      await Category.findByIdAndDelete({
+        _id: productId,
+      });
+      return res.status(204).send();
+    } catch (err) {
+      return res.status({ message: err.message || err });
+    }
+  }
 }
 
 export default new CategoryController();

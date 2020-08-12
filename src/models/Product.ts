@@ -10,31 +10,36 @@ export interface IProduct extends Document {
   category?: ICategory["_id"];
 }
 
-const ProductSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const ProductSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    amount: {
+      type: Number,
+      required: true,
+    },
+    priceWholesale: {
+      type: Number,
+      required: true,
+    },
+    priceReail: {
+      type: Number,
+      required: true,
+    },
+    priceDistributor: {
+      type: Number,
+      required: true,
+    },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
   },
-  amount: {
-    type: Number,
-    required: true,
-  },
-  priceWholesale: {
-    type: Number,
-    required: true,
-  },
-  priceReail: {
-    type: Number,
-    required: true,
-  },
-  priceDistributor: {
-    type: Number,
-    required: true,
-  },
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 export default mongoose.model("Product", ProductSchema);
